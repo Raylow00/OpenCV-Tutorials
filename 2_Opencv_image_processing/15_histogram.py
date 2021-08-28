@@ -37,10 +37,11 @@ image_2 = build_image_2()
 gray_image_2 = cv2.cvtColor(image_2, cv2.COLOR_BGR2GRAY)
 
 # Calculate histogram using the cv2.calcHist() function
+# cv2.calcHist(images, channels, mask, histSize, ranges[, hist[, accumulate]])
 # Arguments:
 # 1. List of images to process
 # 2. Indexes of the channels to be used to calculate the histogram
-# 3. Mask to compute the histogram
+# 3. Mask to compute the histogram of a specific region of the image defined by the mask
 # 4. A list containing the number of bins for each channel
 # 5. The range of possible pixel values
 hist = cv2.calcHist([gray_image], [0], None, [256], [0, 256])
@@ -58,3 +59,7 @@ cv2.destroyAllWindows()
 
 show_hist_with_matplotlib_gray(hist_2, 'grayscale histogram', 4, 'm')
 plt.show()
+
+# Histogram Terminology
+# bins: the number of pixels (frequency) for every tonal value. OpenCV uses histSize to refer to bins. Common values are 8, 16, 32, 64, 128, 256
+# range: range of intensity values we want to measure, usually [0, 255], corresponding to all tonal values
